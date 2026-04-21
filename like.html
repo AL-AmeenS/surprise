@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hehe 🐶</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:#e9d5c0;
+overflow:hidden;
+font-family: Arial;
+}
+
+.bg {
+position: absolute;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: -1;
+filter: brightness(0.9);
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+font-size:20px;
+animation: float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-800px);opacity:0;}
+}
+
+/* Dog */
+.dog{
+width:250px;
+animation: bounce 2s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* Text */
+
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+/* Button */
+.btn{
+margin-top:100px;
+padding:12px 25px;
+background:#7a0c0c;
+color:white;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+.btn:hover{
+transform:scale(1.1);
+}
+
+/* BACK BUTTON (bottom-right) */
+.back-btn{
+position:absolute;
+bottom:150px;
+right:60px;
+padding:10px 25px;
+font-size:16px;
+background:linear-gradient(45deg,#f425ce,#e22aae);
+color:white;
+border:none;
+border-radius:25px;
+cursor:pointer;
+
+/* glow */
+box-shadow:0 0 10px rgba(0,242,254,0.6);
+
+/* animation */
+animation:pulseBlue 1.5s infinite, floatBtn 2s ease-in-out infinite;
+transition:0.3s;
+}
+
+/* hover */
+.back-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px rgba(0,242,254,1);
+}
+
+/* blue pulse */
+@keyframes pulseBlue{
+0%{box-shadow:0 0 10px rgba(0,242,254,0.6);}
+50%{box-shadow:0 0 25px rgba(0,242,254,1);}
+100%{box-shadow:0 0 10px rgba(0,242,254,0.6);}
+}
+
+@media(max-width:768px){
+
+  .dog{
+    width:220px !important;
+    height:auto !important;
+    margin-top:20px !important;
+  }
+
+  .back-btn{
+    right:50%;
+    transform:translateX(50%);
+    bottom:30px;
+    font-size:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+<img src="assets/bg7.png" class="bg">
+
+<img src="assets/likely.png" class="dog" style="height: 400px;width: 400px; margin-top: 50px;">
+
+<button class="back-btn" onclick="goHome()">Back</button>
+
+
+<script>
+function goHome(){
+window.location.href = "index.html";
+}
+
+</script>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* BODY BASE */
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family: Arial;
+overflow:hidden;
+transition:0.5s;
+
+/* CLOSED BACKGROUND */
+background:url("assets/bg4.jpg") no-repeat center center;
+background-size:cover;
+}
+
+/* OPENED BACKGROUND */
+.opened-bg{
+background:url("assets/bg5.jpg") no-repeat center center;
+background-size:cover;
+}
+
+/* POPUP LETTER IMAGE */
+.popup{
+position:absolute;
+width:350px;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+transition:0.4s;
+z-index:2;
+}
+
+/* SHOW POPUP */
+.show{
+transform:translate(-50%,-50%) scale(1);
+}
+
+/* BUTTON */
+.open-btn{
+position:absolute;
+bottom:80px;
+right:100px;
+padding:10px 30px;
+background:#7a0c0c;
+color:white;
+border:none;
+border-radius:25px;
+font-size:18px;
+cursor:pointer;
+z-index:3;
+}
+
+/* ARROW */
+/* NEXT BUTTON */
+.next-btn{
+position:absolute;
+bottom:20px;
+right: 20px;
+transform:translateX(-50%);
+padding:12px 40px;
+font-size:18px;
+background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
+color:white;
+border:none;
+border-radius:30px;
+cursor:pointer;
+display:none;   
+
+/* glow */
+box-shadow:0 0 10px rgba(255,77,109,0.6);
+
+/* animation */
+animation:pulse 1.5s infinite, floatBtn 2s ease-in-out infinite;
+}
+
+/* hover */
+.next-btn:hover{
+transform:translateX(-50%) scale(1.1);
+box-shadow:0 0 25px rgba(255,77,109,1);
+}
+
+/* animations */
+@keyframes pulse{
+0%{box-shadow:0 0 10px rgba(255,77,109,0.6);}
+50%{box-shadow:0 0 25px rgba(255,77,109,1);}
+100%{box-shadow:0 0 10px rgba(255,77,109,0.6);}
+}
+
+@keyframes floatBtn{
+0%{transform:translate(-50%,0);}
+50%{transform:translate(-50%,-6px);}
+100%{transform:translate(-50%,0);}
+}
+
+@media(max-width:768px){
+
+  .popup {
+  position: absolute;
+  width: 350px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.4s;
+  z-index: 2;
+}
+
+/* 👇 Increase size when opened */
+.show {
+  transform: translate(-45%, -50%) scale(.9);
+}
+
+  .open-btn{
+    right:50%;
+    transform:translateX(50%);
+    font-size:14px;
+    bottom:80px;
+  }
+
+  .next-btn {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 40px;
+  font-size: 18px;
+
+  background: linear-gradient(45deg,#ff4d6d,#ff8fa3);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+
+  display: none;
+
+  box-shadow: 0 0 10px rgba(255,77,109,0.6);
+  animation: pulse 1.5s infinite, floatBtn 2s ease-in-out infinite;
+}
+}
+
+</style>
+</head>
+
+<body id="body">
+
+<!-- POPUP ENVELOPE IMAGE -->
+<img src="assets/Letter.png" id="popup" class="popup" style="height: 700px;width: 700px;">
+
+<!-- BUTTON -->
+<button class="open-btn" id="btn" onclick="openLetter()">Opennn !</button>
+
+<!-- NEXT -->
+<button class="next-btn" id="next" onclick="goNext()">Next ➜</button>
+
+<script>
+
+function openLetter(){
+
+// CHANGE BACKGROUND
+document.getElementById("body").classList.add("opened-bg");
+
+// SHOW POPUP IMAGE
+document.getElementById("popup").classList.add("show");
+
+// HIDE BUTTON
+document.getElementById("btn").style.display="none";
+
+// SHOW ARROW
+document.getElementById("next").style.display="block";
+}
+
+// NEXT PAGE
+function goNext(){
+window.location.href="gallery.html";
+}
+
+</script>
+
+</body>
+</html>

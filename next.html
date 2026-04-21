@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Surprise ❤️</title>
+
+<style>
+body {
+margin: 0;
+background: black;
+color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+text-align: center;
+}
+
+#gift {
+width: 150px;
+cursor: pointer;
+transition: 0.5s;
+}
+
+#gift:hover {
+transform: scale(1.2);
+}
+
+#content {
+display: none;
+}
+
+img {
+width: 250px;
+margin: 10px;
+border-radius: 15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Click the gift 🎁</h2>
+
+<img src="assets/gift.png" id="gift" onclick="openGift()">
+
+<div id="content">
+
+<h1>Happy Birthday Abinooo ❤️🎂</h1>
+
+<p id="message"></p>
+
+<div>
+<img src="assets/photo1.jpg">
+<img src="assets/photo2.jpg">
+<img src="assets/photo3.jpg">
+</div>
+
+</div>
+
+<script>
+function openGift(){
+document.getElementById("gift").style.display="none";
+document.getElementById("content").style.display="block";
+typeMessage();
+}
+
+// Type message
+const msg = "You are the best thing in my life 💖 I love you so much 🥺";
+let j = 0;
+
+function typeMessage(){
+if(j < msg.length){
+document.getElementById("message").innerHTML += msg.charAt(j);
+j++;
+setTimeout(typeMessage, 50);
+}
+}
+</script>
+
+</body>
+</html>

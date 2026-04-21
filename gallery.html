@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* BODY */
+body{
+  margin:0;
+  min-height:100vh;   /* allows page to grow */
+
+  font-family: Arial;
+  text-align:center;
+
+  background: url("assets/bg5.jpg") no-repeat center center;
+  background-size: cover;
+
+  /* page animation */
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.8s;
+}
+
+body.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* TITLE */
+h1{
+  margin-top:40px;
+  color:#f9f7f7;
+  font-size:32px;
+}
+
+/* GALLERY */
+.gallery{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+  margin-top:40px;
+  padding:20px;
+}
+
+/* PHOTO CARD */
+.photo{
+  width:260px;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  transform:rotate(-5deg);
+  transition:0.3s;
+}
+
+/* alternate tilt */
+.photo:nth-child(even){
+  transform:rotate(5deg);
+}
+
+/* hover effect */
+.photo:hover{
+  transform:scale(1.1) rotate(0deg);
+}
+
+/* IMAGE */
+.photo img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:8px;
+}
+
+/* NEXT BUTTON (FIXED VERSION) */
+.next-btn{
+  display:block;
+  margin:40px auto;   /* centers + space below images */
+
+  padding:12px 40px;
+  font-size:22px;
+
+  background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
+  color:white;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+
+  box-shadow:0 0 10px rgba(255,77,109,0.6);
+
+  animation:pulse 1.5s infinite, floatBtn 2s ease-in-out infinite;
+  transition:0.3s;
+}
+
+/* hover */
+.next-btn:hover{
+  transform: scale(1.1);
+  box-shadow:0 0 25px rgba(255,77,109,1);
+}
+
+/* animations */
+@keyframes pulse{
+  0%{box-shadow:0 0 10px rgba(255,77,109,0.6);}
+  50%{box-shadow:0 0 25px rgba(255,77,109,1);}
+  100%{box-shadow:0 0 10px rgba(255,77,109,0.6);}
+}
+
+@keyframes floatBtn{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+  100%{transform:translateY(0);}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  
+
+  .photo{
+    width:80%;
+  }
+
+  .next-btn{
+    font-size:16px;
+    padding:10px 25px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Sudhu loves you sooo muchh Abinoooo 💖</h1>
+
+<div class="gallery">
+
+  <div class="photo">
+    <img src="assets/Img1.jpeg">
+  </div>
+
+  <div class="photo">
+    <img src="assets/Img2.jpeg">
+  </div>
+
+  <div class="photo">
+    <img src="assets/Img3.jpeg">
+  </div>
+
+</div>
+
+<!-- NEXT BUTTON -->
+<button class="next-btn" onclick="goTo('like.html')">Next ➜</button>
+
+<script>
+
+// page load animation
+window.onload = () => {
+  document.body.classList.add("show");
+};
+
+// navigation
+function goTo(page){
+  document.body.classList.remove("show");
+  setTimeout(()=>{
+    window.location.href = page;
+  }, 400);
+}
+
+</script>
+
+</body>
+</html>
