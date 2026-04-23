@@ -1,146 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hehe 🐶</title>
-
 <style>
 
-body{
-margin:0;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:#e9d5c0;
-overflow:hidden;
-font-family: Arial;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+  position: relative;
 }
 
+/* Full-screen background */
 .bg {
-position: absolute;
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: -1;
-filter: brightness(0.9);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.88);
 }
 
 /* Floating hearts */
-.heart{
-position:absolute;
-font-size:20px;
-animation: float 5s linear infinite;
+.heart {
+  position: fixed;
+  pointer-events: none;
+  animation: floatUp 5s linear infinite;
 }
 
-@keyframes float{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-800px);opacity:0;}
+@keyframes floatUp {
+  0%   { transform: translateY(0);      opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* Dog */
-.dog{
-width:250px;
-animation: bounce 2s infinite;
+/* Image */
+.dog {
+  width: clamp(200px, 55vw, 380px);
+  height: auto;
+  animation: bounce 2s infinite;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
 }
 
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-16px); }
 }
 
-/* Text */
+/* Back button */
+.back-btn {
+  margin-top: 36px;
+  padding: clamp(10px, 2.5vw, 13px) clamp(28px, 7vw, 44px);
+  font-size: clamp(14px, 3.5vw, 18px);
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
 
+  background: linear-gradient(45deg, #f425ce, #e22aae);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 
-@keyframes pop{
-from{transform:scale(0);}
-to{transform:scale(1);}
+  box-shadow: 0 0 14px rgba(244,37,206,0.55);
+  animation: pulseBlue 1.5s infinite, floatBtn 2s ease-in-out infinite;
+  transition: transform 0.2s;
 }
 
-/* Button */
-.btn{
-margin-top:100px;
-padding:12px 25px;
-background:#7a0c0c;
-color:white;
-border:none;
-border-radius:20px;
-cursor:pointer;
+.back-btn:hover, .back-btn:active { transform: scale(1.1); }
+
+@keyframes pulseBlue {
+  0%, 100% { box-shadow: 0 0 10px rgba(244,37,206,0.5); }
+  50%       { box-shadow: 0 0 26px rgba(244,37,206,1);   }
 }
 
-.btn:hover{
-transform:scale(1.1);
+@keyframes floatBtn {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
 
-/* BACK BUTTON (bottom-right) */
-.back-btn{
-position:absolute;
-bottom:150px;
-right:60px;
-padding:10px 25px;
-font-size:16px;
-background:linear-gradient(45deg,#f425ce,#e22aae);
-color:white;
-border:none;
-border-radius:25px;
-cursor:pointer;
-
-/* glow */
-box-shadow:0 0 10px rgba(0,242,254,0.6);
-
-/* animation */
-animation:pulseBlue 1.5s infinite, floatBtn 2s ease-in-out infinite;
-transition:0.3s;
-}
-
-/* hover */
-.back-btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px rgba(0,242,254,1);
-}
-
-/* blue pulse */
-@keyframes pulseBlue{
-0%{box-shadow:0 0 10px rgba(0,242,254,0.6);}
-50%{box-shadow:0 0 25px rgba(0,242,254,1);}
-100%{box-shadow:0 0 10px rgba(0,242,254,0.6);}
-}
-
-@media(max-width:768px){
-
-  .dog{
-    width:220px !important;
-    height:auto !important;
-    margin-top:20px !important;
-  }
-
-  .back-btn{
-    right:50%;
-    transform:translateX(50%);
-    bottom:30px;
-    font-size:14px;
-  }
-}
 </style>
 </head>
-
 <body>
-<img src="assets/bg7.png" class="bg">
 
-<img src="assets/likely.png" class="dog" style="height: 400px;width: 400px; margin-top: 50px;">
-
+<img src="assets/bg7.png" class="bg" alt="">
+<img src="assets/likely.png" class="dog" alt="Likely">
 <button class="back-btn" onclick="goHome()">Back</button>
 
-
 <script>
-function goHome(){
-window.location.href = "index.html";
+// Floating hearts
+setInterval(() => {
+  let h = document.createElement("div");
+  h.innerHTML = "💖";
+  h.classList.add("heart");
+  h.style.left     = Math.random() * 100 + "vw";
+  h.style.bottom   = "-30px";
+  h.style.fontSize = (Math.random() * 18 + 10) + "px";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 5000);
+}, 350);
+
+function goHome() {
+  window.location.href = "index.html";
 }
-
 </script>
-</body>
-</html>
-
 </body>
 </html>

@@ -1,127 +1,141 @@
-/* BODY + BACKGROUND */
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial;
-  overflow: hidden;
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&display=swap');
 
-  /* 🔥 BACKGROUND (BEST METHOD) */
-  background: url("assets/bg1.jpg") no-repeat center center;
-  background-size: cover;
+/* ===== CSS VARIABLES ===== */
+:root {
+  --cream: #f5e6cc;
+  --dark-red: #8b0000;
+  --pink: #ff4d6d;
+  --pink-light: #ff8fa3;
+  --white: #fff;
 }
 
-/* LAYOUT */
+/* ===== BODY ===== */
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: 'Nunito', sans-serif;
+
+  background: url("assets/bg1.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  overflow-x: hidden;
+}
+
+/* ===== CONTAINER ===== */
 .container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* TITLE */
+/* ===== TOP IMAGE (mobile only) ===== */
+.top-img {
+  display: none;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--cream);
+  box-shadow: 0 0 20px rgba(255,77,109,0.5);
+  margin-bottom: 8px;
+}
+
+/* ===== TITLE ===== */
 .title {
-  font-size: 72px;
-  color: #e7d7c0;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(36px, 8vw, 72px);
+  color: var(--cream);
+  margin: 0 0 8px;
   animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
   from { text-shadow: 0 0 10px #fff; }
-  to { text-shadow: 0 0 30px pink; }
+  to   { text-shadow: 0 0 30px pink; }
 }
 
-/* SUB TEXT */
+/* ===== SUB TEXT ===== */
 .sub {
-  margin-top: -20px;
-  color: #e7d7c0;
-  font-size: 30px;
+  color: var(--cream);
+  font-size: clamp(16px, 4vw, 28px);
+  margin: 0 0 12px;
+  padding: 0 10px;
 }
 
-/* QUESTION */
+/* ===== QUESTION ===== */
 .question {
   color: white;
-  font-size: 32px;
+  font-size: clamp(18px, 4.5vw, 32px);
+  margin: 0 0 20px;
+  padding: 0 10px;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 .buttons {
-  margin-top: 20px;
   display: flex;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 button {
-  padding: 12px 25px;
+  padding: 12px 28px;
   border-radius: 25px;
   border: none;
   cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(14px, 3.5vw, 18px);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* YES BUTTON */
 .yes {
-  background: #ff4d6d;
+  background: var(--pink);
   color: white;
 }
 
-/* NO BUTTON */
+.yes:hover { transform: scale(1.08); }
+
 .no {
   background: #333;
   color: white;
   position: relative;
 }
 
-/* FLOATING HEARTS */
+/* ===== FLOATING HEARTS ===== */
 .heart {
-  position: absolute;
-  animation: float 5s linear infinite;
+  position: fixed;
+  pointer-events: none;
+  animation: floatHeart 5s linear infinite;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-800px); opacity: 0; }
+@keyframes floatHeart {
+  0%   { transform: translateY(0);      opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
 }
-.top-img{
-  display: none;
-}
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
 
-    .top-img{
-    display: block;        /* 👈 show on mobile */
-    width: 300px;
-    margin-bottom: 10px;
-  }
-
-  .title {
-    font-size: 50px;
-    padding: 0 10px;
-  }
-
-  .sub {
-    font-size: 18px;
-    margin-top: 0;
-    padding: 0 10px;
-  }
-
-  .question {
-    font-size: 20px;
-    padding: 0 10px;
+/* ===========================
+   MOBILE  (≤ 480px)
+=========================== */
+@media (max-width: 480px) {
+  .top-img {
+    display: block;
   }
 
   .buttons {
     flex-direction: column;
-    gap: 12px;
-    width: 80%;
+    width: 100%;
     align-items: center;
   }
 
   button {
-    width: 90%;
-    font-size: 15px;
-    padding: 10px 20px;
+    width: 85%;
   }
 }
