@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,30 +7,57 @@
 <title>Open Me 💌</title>
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@700&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Nunito', sans-serif;
   overflow: hidden;
   transition: background 0.6s ease;
-  background: url("assets/bg4.jpg") no-repeat center center;
-  background-size: cover;
+  background: #730F0F;
 }
 
+/* Opened background */
 .opened-bg {
-  background-image: url("assets/bg5.jpg") !important;
+  background: url("assets/bg5.jpg") no-repeat center center !important;
+  background-size: cover !important;
 }
 
-/* Letter popup */
+/* Closed heading */
+.closed-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(26px, 6vw, 48px);
+  color: #f5e6cc;
+  text-align: center;
+  padding: 0 24px;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  line-height: 1.3;
+}
+
+/* Envelope image (closed state) */
+.envelope-img {
+  width: clamp(200px, 55vw, 380px);
+  height: auto;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  animation: floatEnv 3s ease-in-out infinite;
+}
+
+@keyframes floatEnv {
+  0%, 100% { transform: translateY(0);     }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Letter popup (opened state) */
 .popup {
   position: absolute;
-  width: clamp(240px, 70vw, 480px);
+  width: clamp(420px, 85vw, 620px);
   height: auto;
   top: 50%;
   left: 50%;
@@ -44,25 +72,22 @@ body {
 
 /* Open button */
 .open-btn {
-  position: fixed;
-  bottom: clamp(60px, 12vh, 100px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: clamp(10px, 2.5vw, 13px) clamp(28px, 7vw, 44px);
-  background: #7a0c0c;
+  padding: clamp(11px, 2.5vw, 14px) clamp(32px, 8vw, 52px);
+  background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
   color: white;
   border: none;
   border-radius: 25px;
-  font-size: clamp(15px, 3.5vw, 20px);
+  font-size: clamp(16px, 3.5vw, 22px);
   font-weight: 700;
   cursor: pointer;
   z-index: 3;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 
 .open-btn:hover, .open-btn:active {
-  transform: translateX(-50%) scale(1.08);
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
 }
 
 /* Next button */
@@ -98,26 +123,72 @@ body {
   50%       { transform: translateX(-50%) translateY(-6px); }
 }
 
+/* Mobile view adjustments */
+@media (max-width: 480px) {
+  .next-btn {
+    bottom: 110px;
+  }
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  pointer-events: none;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0);      opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
 </style>
 </head>
 <body id="body">
 
+<!-- CLOSED STATE -->
+<h1 class="closed-title" id="closedTitle">Here's my whole heart for youuuuu 💖</h1>
+<img src="assets/envelope1.png" class="envelope-img" id="envelopeImg" alt="Envelope">
+<button class="open-btn" id="openBtn" onclick="openLetter()">Opennn !</button>
+
+<!-- OPENED STATE - Letter popup -->
 <img src="assets/Letter.png" id="popup" class="popup" alt="Letter">
 
-<button class="open-btn" id="openBtn" onclick="openLetter()">Opennn !</button>
-<button class="next-btn"  id="nextBtn" onclick="goNext()">Next ➜</button>
+<!-- Next button -->
+<button class="next-btn" id="nextBtn" onclick="goNext()">Next ➜</button>
 
 <script>
 function openLetter() {
+  // Change background
   document.getElementById("body").classList.add("opened-bg");
+
+  // Hide closed state elements
+  document.getElementById("closedTitle").style.display = "none";
+  document.getElementById("envelopeImg").style.display = "none";
+  document.getElementById("openBtn").style.display     = "none";
+
+  // Show letter popup and next button
   document.getElementById("popup").classList.add("show");
-  document.getElementById("openBtn").style.display = "none";
-  document.getElementById("nextBtn").style.display  = "block";
+  document.getElementById("nextBtn").style.display = "block";
 }
 
 function goNext() {
   window.location.href = "gallery.html";
 }
+
+// Falling hearts animation
+setInterval(() => {
+  let h = document.createElement("div");
+  h.innerHTML = "💖";
+  h.classList.add("heart");
+  h.style.left   = Math.random() * 100 + "vw";
+  h.style.bottom = "-30px";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 5000);
+}, 350);
+
 </script>
 </body>
 </html>
+  
