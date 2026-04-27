@@ -68,5 +68,5 @@ function celebrate() {
     document.head.appendChild(s);
   }
 
-  setTimeout(() => { window.location.href = "dog.html"; }, 900);
+  setTimeout(() => { window.location.href = "dog.html"; }, 150);
 }
